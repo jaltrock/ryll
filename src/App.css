@@ -4,7 +4,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 10px 20px;
+  margin-bottom: 10px;
   background-color: dimgray;
   border-radius: 5px;
   width: 100%;
@@ -24,6 +24,7 @@ header {
   height: auto;
   cursor: pointer;
   border-radius: 10px;
+  margin-left: 10px;
 }
 
 /*
@@ -38,12 +39,10 @@ header .logo span{
 .nav-menu {
   display: flex;
   list-style-type: none;
-  padding: 0;
-  margin: 0;
 }
 
-.nav-menu li {
-  margin: 10px;
+.nav-item {
+  margin-left: 10px;
 }
 
 .nav-menu a {
@@ -57,3 +56,6 @@ header .logo span{
     -2px 2px 0px black;  
 }
 
+.nav-menu a:last-child {
+  margin-right: 20px;
+}
