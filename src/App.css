@@ -59,3 +59,20 @@ header .logo span{
 .nav-menu a:last-child {
   margin-right: 20px;
 }
+
+button {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: rgb(46, 61, 75);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover{
+background-color: blue;
+}
