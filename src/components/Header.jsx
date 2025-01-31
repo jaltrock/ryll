@@ -1,6 +1,6 @@
 import React from "react";
-
-import Logo from "../assets/ryll-logo.png";
+import { Link } from "react-router-dom";
+import Logo from "../assets/ryll-logo-small.png";
 
 export const Header = () => {
   return (
