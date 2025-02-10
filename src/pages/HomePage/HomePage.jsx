@@ -1,17 +1,24 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./HomePage.css";
 import { Button } from "../../components/Button";
 
 const HomePage = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
-  const [cache, setCache] = useState({});
+  const [cache, setCache] = useState(() => {
+    // Load saved searches from localStorage (or default to empty object)
+    return JSON.parse(localStorage.getItem("searchCache")) || {};
+  });
+  // Function to save cache to localStorage whenever it updates
+  useEffect(() => {
+    localStorage.setItem("searchCache", JSON.stringify(cache));
+  }, [cache]);
 
-  const handleSearch = async () => {
+  const handleSearch = () => {
     if (!query.trim()) return; //Prevent empty searches
 
-    //Check if results exist in cache
+    //Check if query already exist in cache
     if (cache[query]) {
       setResults(cache[query]);
     } else {
@@ -20,30 +27,31 @@ const HomePage = () => {
 
       //Update state & cache
       setResults(newResult);
-      setCache((prevCache) => ({
-        ...prevCache,
-        [query]: newResult,
-      }));
+      setCache((prevCache) => {
+        const updatedCache = { ...prevCache, [query]: newResult };
+        localStorage.setItem("searchCache", JSON.stringify(updatedCache)); //Save to localStorage
+        return updatedCache;
+      });
     }
   };
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Search</h1>
+      <h1 className="searchLabel">Search</h1>
 
       <input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Enter a search term..."
-        className="border p-2 mr-2"
+        className="searchField"
       />
 
       <Button text="Search" onClick={handleSearch} />
 
-      <ul className="mt-4">
+      <ul className="searchResults">
         {results.map((result, index) => (
-          <li key={index} className="border p-2 my-1">
+          <li key={index} className="searchResultLi">
             {result}
           </li>
         ))}
