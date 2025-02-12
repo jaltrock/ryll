@@ -5,9 +5,10 @@ import Logo from "../assets/ryll-logo-small.png";
 export const Header = () => {
   return (
     <header className="header">
+      <img src={Logo} alt="ryll logo" />
       <nav className="navbar">
         {/* Make sure logo.svg is inside the public folder */}
-        <img src={Logo} alt="ryll logo" />
+        
         <ul className="nav-menu">
           <li className="nav-item">
             <Link to="/">Home</Link>
